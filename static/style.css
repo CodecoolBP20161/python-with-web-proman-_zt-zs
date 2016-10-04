@@ -1,6 +1,3 @@
-/*.board {*/
-    /*border: 1px solid black;*/
-    /*border-radius: 8px;*/
-    /*padding: 5px;*/
-    /*margin: auto -10px;*/
-/*}*/
+.panel-footer>p>a {
+    color: grey;
+}
