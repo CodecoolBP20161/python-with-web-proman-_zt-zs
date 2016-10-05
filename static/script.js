@@ -1,8 +1,11 @@
 function localStore() {
     this.boards = new Array;
     this.cards = new Array;
-    this.saveBoard = function (boardId) {
-        this.boards.push(boardId);
+    this.saveBoard = function (board) {
+        var newBoard = {};
+        var id = board.id;
+        newBoard[id] = board;
+        this.boards.push(newBoard);
         localStorage.setItem("boards", JSON.stringify(this.boards));
     };
     this.getBoards = function () {
@@ -16,7 +19,7 @@ function localStore() {
 };
 
 function storageSwitch(storage) {
-    this.saveBoard = function (boardId) { storage.saveBoard(boardId); };
+    this.saveBoard = function (board) { storage.saveBoard(board); };
     this.getBoards = storage.getBoards();
     this.saveCard = storage.saveCard();
     this.getCardsByBoardId = storage.getCardsByBoardId();
@@ -25,3 +28,4 @@ function storageSwitch(storage) {
 var localImplementation = new localStore();
 var centralStore = new storageSwitch(localImplementation);
 // now it's possible to use centralStore (storageSwitch instance) instead of a localStore instance
+
