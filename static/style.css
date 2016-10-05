@@ -1,3 +1,13 @@
 .panel-footer>p>a {
     color: grey;
 }
+#board-heading .col-md-1 {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+#board-heading .col-md-1 * {
+    display: inline-block;
+    vertical-align: middle;
+
+}
