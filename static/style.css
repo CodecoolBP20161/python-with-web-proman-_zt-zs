@@ -15,3 +15,13 @@
 #board-heading .col-md-3 h3 {
     margin-left: 15px;
 }
+.board:hover {
+    box-shadow: 0 0 5px rgba(75, 255, 184, 1);
+}
+body {
+    /*background: url("../static/cheap_diagonal_fabric_m.png");*/
+    font-family: 'Monda', sans-serif;
+}
+button:focus {
+    outline: none !important;
+}

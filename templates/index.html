@@ -12,6 +12,8 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <link rel="stylesheet" href="../static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Abel|Raleway|Ubuntu|Nunito|Montserrat|Oxygen:700|Monda:700"
+          rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -38,7 +40,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button type="button" class="btn navbar-btn btn btn-default" id="newBoard" data-toggle="modal"
+                    <button type="button" class="btn navbar-btn btn-default" id="newBoard" data-toggle="modal"
                             data-target="#newBoardModal">New Board
                     </button>
                     <!-- Modal -->
@@ -54,7 +56,8 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="newBoardName">Title</label>
-                                        <input type="text" class="form-control" id="newBoardName" placeholder="Name your new board...">
+                                        <input type="text" class="form-control" id="newBoardName"
+                                               placeholder="Name your new board...">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -72,40 +75,43 @@
 <div class="container-fluid" id="board">
     <div class="row" id="board-heading">
         <div class="col-md-3">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span><h3 id="boardsOverview">Personal Boards</h3>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <h3 id="boardsOverview">Personal Boards</h3>
         </div>
         <div class="col-md-9"></div>
     </div>
-    <div class="row main-content">
-        <div class="col-md-3">
-            <div class="panel panel-default list" id="list_1">
-                <div class="panel-heading"><h4>List_1</h4></div>
-                <div class="panel-body"><p>Cards should come here</p></div>
-                <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+    <div class="container-fluid">
+        <div class="row main-content">
+            <div class="col-md-3">
+                <div class="panel panel-default list" id="list_1">
+                    <div class="panel-heading"><h4>List_1</h4></div>
+                    <div class="panel-body"><p>Cards should come here</p></div>
+                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-default list" id="list_2">
-                <div class="panel-heading"><h4>List_2</h4></div>
-                <div class="panel-body"><p>Cards should come here</p></div>
-                <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+            <div class="col-md-3">
+                <div class="panel panel-default list" id="list_2">
+                    <div class="panel-heading"><h4>List_2</h4></div>
+                    <div class="panel-body"><p>Cards should come here</p></div>
+                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-default list" id="list_3">
-                <div class="panel-heading"><h4>List_3</h4></div>
-                <div class="panel-body"><p>Cards should come here</p></div>
-                <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+            <div class="col-md-3">
+                <div class="panel panel-default list" id="list_3">
+                    <div class="panel-heading"><h4>List_3</h4></div>
+                    <div class="panel-body"><p>Cards should come here</p></div>
+                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-default list" id="list_4">
-                <div class="panel-heading"><h4>List_4</h4></div>
-                <div class="panel-body"><p>Cards should come here</p></div>
-                <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+            <div class="col-md-3">
+                <div class="panel panel-default list" id="list_4">
+                    <div class="panel-heading"><h4>List_4</h4></div>
+                    <div class="panel-body"><p>Cards should come here</p></div>
+                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
 </body>
