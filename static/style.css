@@ -1,7 +1,7 @@
 .panel-footer>p>a {
     color: grey;
 }
-#board-heading .col-md-1, #board-heading .col-md-2{
+#board-heading .col-md-1, #board-heading .col-md-3{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -9,7 +9,9 @@
 #board-heading {
     padding-top: 30px;
 }
-#board-heading .col-md-2 h3 {
+#board-heading .col-md-3 span, #board-heading .col-md-3 h3 {
     display: inline-block;
-    margin-right: 15px;
+}
+#board-heading .col-md-3 h3 {
+    margin-left: 15px;
 }
