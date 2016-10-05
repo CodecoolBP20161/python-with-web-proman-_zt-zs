@@ -1,3 +1,15 @@
 .panel-footer>p>a {
     color: grey;
 }
+#board-heading .col-md-1, #board-heading .col-md-2{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#board-heading {
+    padding-top: 30px;
+}
+#board-heading .col-md-2 h3 {
+    display: inline-block;
+    margin-right: 15px;
+}
