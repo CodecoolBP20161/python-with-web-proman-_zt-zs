@@ -5,8 +5,20 @@ function localStore() {
         var newBoard = {};
         var id = board.id;
         newBoard[id] = board;
-        this.boards.push(newBoard);
-        localStorage.setItem("boards", JSON.stringify(this.boards));
+        newBoard = JSON.stringify(newBoard);
+
+        if (localStorage.boards) {
+
+            var storage = [];
+            var oldStorage = localStorage.getItem("boards");
+            storage.push(oldStorage);
+            storage.push(newBoard);
+            localStorage.setItem("boards", storage)
+        } else {
+            var newStorage = [];
+            newStorage.push(newBoard);
+            localStorage.setItem("boards", newBoard)
+        }
     };
     this.getBoards = function () {
         var storedBoards = JSON.parse(localStorage.getItem("boards"));
