@@ -29,3 +29,9 @@ var localImplementation = new localStore();
 var centralStore = new storageSwitch(localImplementation);
 // now it's possible to use centralStore (storageSwitch instance) instead of a localStore instance
 
+var id = 0;
+function Board(title) {
+    this.title = title;
+    id += 1;
+    this.id = id;
+}
