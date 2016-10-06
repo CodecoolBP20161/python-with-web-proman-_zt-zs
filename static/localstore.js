@@ -9,28 +9,28 @@ function localStore() {
         localStorage.setItem('boards', JSON.stringify(storage));
     };
     this.getBoards = function () {
-        var storedBoards = localStorage.getItem('boards');
-        storedBoards = JSON.parse(storedBoards);
+        var storedBoards = JSON.parse(localStorage.getItem('boards'));
         return storedBoards;
     };
     this.saveCard = function (card) {
-        var cardStorage = this.getCardsByBoardId();
-        if (cardStorage) {
-            cardStorage.push(card);
+        var storage = this.getCardsByBoardId(card.board);
+        if (storage) {
+            storage.push(card);
         } else {
-            cardStorage = [card];
+            storage = [card];
         }
-        localStorage.setItem('cards', JSON.stringify(cardStorage));
+        localStorage.setItem('cards', JSON.stringify(storage));
     };
     this.getCardsByBoardId = function (board) {
         var cardsByBoard = new Array;
-        var storedCards = localStorage.getItem('cards');
-        storedCards = JSON.parse(storedCards);
-        for (var i in storedCards) {
-            if (storedCards[i].board === board) {
-                cardsByBoard.push(storedCards[i]);
+        var storedCards = JSON.parse(localStorage.getItem('cards'));
+        try {
+            for (var i in storedCards) {
+                if (storedCards[i].board === board) {
+                    cardsByBoard.push(storedCards[i]);
+                };
             };
-        };
+        } catch (err) {};
         return cardsByBoard;
     };
 };
