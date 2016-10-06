@@ -77,27 +77,23 @@ var askNew = function () {
     return newBoard
 };
 var adding = function (board) {
-    $("#no-boards").remove();
     var newBoard = board;
     var boardId = "board_" + newBoard.id;
     $(".boards").append('<a href="#"><div class="col-md-3">' +
         '<div class="panel panel-default board" id="' + boardId + '">' +
         '<div class="panel-heading ' + boardId + '">' + newBoard.title + '</div>' +
-        '<div class="panel-footer">.</div></div></div></a>');
+        '<div class="panel-footer"></div></div></div></a>');
 };
 
 var display = function () {
     try {
-        $("#no-boards").remove();
         var all = centralStore.getBoards;
         for (var i = 0; i < all.length; i++) {
             adding(all[i]);
         }
     } catch (err) {
-        var msg = "No boards yet.";
-        console.log(msg);
+        console.log("No boards yet.");
         console.log(err.message);
-        $(".boards").append('<div class="col-md-3" style="text-align: center" id="no-boards"><div class="panel panel-default board"><div class="panel-heading"></div><div class="panel-body">' + msg + '</div><div class="panel-footer"></div></div></div>');
     }
 };
 
@@ -118,8 +114,6 @@ $(document).ready(function () {
     $(".board").mouseenter(function () {
         $(this).addClass("active")});
     $(".board").mouseleave(function() {$(this).removeClass("active");})
-
-
     $(".new-card").click(function () {
             addNewCard($(this));
     })
