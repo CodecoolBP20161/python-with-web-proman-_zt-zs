@@ -7,7 +7,7 @@ function storageSwitch(storage) {
         storage.saveCard(card);
     };
     this.getCardsByBoardId = function (board) {
-        storage.getCardsByBoardId(board);
+        return storage.getCardsByBoardId(board);
     };
 };
 
@@ -43,11 +43,10 @@ var askNew = function () {
     return newBoard;
 };
 var adding = function (board) {
-    var newBoard = board;
-    var boardId = "board_" + newBoard.id;
+    var boardId = "board_" + board.id;
     $(".boards").append('<a href="#"><div class="col-md-3">' +
         '<div class="panel panel-default board" id="' + boardId + '">' +
-        '<div class="panel-heading ' + boardId + '">' + newBoard.title + '</div>' +
+        '<div class="panel-heading ' + boardId + '">' + board.title + '</div>' +
         '<div class="panel-footer"></div></div></div></a>');
 };
 
@@ -80,7 +79,7 @@ var displayBoard = function (board) {
         $("title").remove()
     $("head").append('<title>'+ x.title+'</title>');
         $("#new-board").remove();
-}
+};
 
 var addNewCard = function (board) {
     var card = new Card(prompt("Your card:"), board[0].id);
@@ -89,16 +88,15 @@ var addNewCard = function (board) {
 };
 
 var displayCards = function (board) {
-    var currentBoard = board.id;
-    currentBoard = "board_"+currentBoard;
-    var allCards = centralStore.getCardsByBoardId(currentBoard);
+    var id = board[0].id;
+    var cards = centralStore.getCardsByBoardId(id);
+    console.log(cards)
     try {
-        for (var i in cardsByBoard) {
-            var text = cardsByBoard[i].text;
+        for (var i in cards) {
+            var text = cards[i].text;
             $(".col-md-6").append('<div class="card">' + text + '</div>');
-        }
-    } catch(err) {
-    }
+        };
+    } catch(err) {};
     };
 
 
@@ -115,10 +113,9 @@ $(document).ready(function () {
     });
     $(".board").click(function () {
         $(".overview").remove();
-        var currentBoard = $(this)
-        var x = chooseBoard(currentBoard);
-        displayBoard(x)
-        displayCards(x)
+        var currentBoard = $(this);
+        displayBoard(chooseBoard(currentBoard));
+        displayCards(currentBoard);
         $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button>');
     $(".new-card").click(function () {
             addNewCard(currentBoard);
