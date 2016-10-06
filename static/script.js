@@ -16,7 +16,7 @@ function localStore() {
     this.saveCard = function (card) {
         var cardStorage = this.getCardsByBoardId();
         if (cardStorage) {
-            storage.push(card);
+            cardStorage.push(card);
         } else {
             cardStorage = [card];
         }
@@ -83,9 +83,7 @@ var adding = function (board) {
     $(".boards").append('<a href="#"><div class="col-md-3">' +
         '<div class="panel panel-default board" id="' + boardId + '">' +
         '<div class="panel-heading ' + boardId + '">' + newBoard.title + '</div>' +
-        '<div class="panel-footer">' +
-        '<button type="button" class="btn navbar-btn btn-info center-block new-card" role="button" id="">Add new Card</button>' +
-        '</div></div></div></a>');
+        '<div class="panel-footer">.</div></div></div></a>');
 };
 
 var display = function () {
@@ -109,7 +107,7 @@ var addNewCard = function (board) {
     var cardBoardId = "."+cardBoard
     var cardId = cardBoardId.replace("board", "card");
     centralStore.saveCard(card);
-    $(cardBoardId).after('<div class="panel-body" id="card_' + cardId + '">'+card.text+'</div>')
+    $(cardBoardId).after('<div class="panel-body" id="card_' + cardBoard + '">'+card.text+'</div>')
 };
 
 $(document).ready(function () {
@@ -117,10 +115,10 @@ $(document).ready(function () {
     $("#new-board").click(function () {
         adding(askNew())
     });
-    $(".board").click(function () {
-        $(".board").removeClass("active")
-        $(this).addClass("active");
-    });
+    $(".board").mouseenter(function () {
+        $(this).addClass("active")});
+    $(".board").mouseleave(function() {$(this).removeClass("active");})
+
 
     $(".new-card").click(function () {
             addNewCard($(this));
