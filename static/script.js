@@ -40,7 +40,8 @@ function storageSwitch(storage) {
         storage.saveBoard(board);
     };
     this.getBoards = storage.getBoards();
-    this.saveCard = storage.saveCard();
+    this.saveCard = function (card) {
+        storage.saveCard(card)};
     this.getCardsByBoardId = storage.getCardsByBoardId();
 };
 
@@ -78,10 +79,11 @@ var askNew = function () {
 var adding = function (board) {
     $("#no-boards").remove();
     var newBoard = board;
+    var boardId = "board_" + newBoard.id;
     $(".boards").append('<a href="#"><div class="col-md-3">' +
-        '<div class="panel panel-default board" id="board_' + newBoard.id + '">' +
-        '<div class="panel-heading">' + newBoard.title + '</div>' +
-        '<div class="panel-body">Cards should come here</div><div class="panel-footer">' +
+        '<div class="panel panel-default board" id="' + boardId + '">' +
+        '<div class="panel-heading ' + boardId + '">' + newBoard.title + '</div>' +
+        '<div class="panel-footer">' +
         '<button type="button" class="btn navbar-btn btn-info center-block new-card" role="button" id="">Add new Card</button>' +
         '</div></div></div></a>');
 };
@@ -101,9 +103,13 @@ var display = function () {
     }
 };
 
-var addCard = function (board, card) {
-    var boardId = '#board_' + board.id;
-    $(boardId).append('<div class=""><div class="" id="card_' + card.id + '"">' + card.text + '</div></div>')
+var addNewCard = function (board) {
+    var cardBoard = $(board).parent().parent()[0].id;
+    var card = new Card(prompt("Your card:"), cardBoard );
+    var cardBoardId = "."+cardBoard
+    var cardId = cardBoardId.replace("board", "card");
+    centralStore.saveCard(card);
+    $(cardBoardId).after('<div class="panel-body" id="card_' + cardId + '">'+card.text+'</div>')
 };
 
 $(document).ready(function () {
@@ -113,9 +119,10 @@ $(document).ready(function () {
     });
     $(".board").click(function () {
         $(".board").removeClass("active")
-        $(this).addClass("active")
+        $(this).addClass("active");
     });
-        $(".new-card").click(function () {
-        prompt("Your card:");
+
+    $(".new-card").click(function () {
+            addNewCard($(this));
     })
 });
