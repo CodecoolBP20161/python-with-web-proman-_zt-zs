@@ -1,22 +1,12 @@
 function localStore() {
     this.saveBoard = function (board) {
-        var newBoard = {};
-        var id = board.id;
-        newBoard[id] = board;
-        newBoard = JSON.stringify(newBoard);
-
-        if (localStorage.boards) {
-
-            var storage = [];
-            var oldStorage = this.getBoards;
-            storage.push(oldStorage);
-            storage.push(newBoard);
-            localStorage.setItem("boards", storage)
+        var storage = this.getBoards();
+        if (storage) {
+            storage.push(board);
         } else {
-            var newStorage = [];
-            newStorage.push(newBoard);
-            localStorage.setItem("boards", newBoard)
+            storage = [board];
         }
+        localStorage.setItem('boards', JSON.stringify(storage));
     };
     this.getBoards = function () {
         var storedBoards = localStorage.getItem("boards");
