@@ -19,18 +19,10 @@ function localStore() {
         } else {
             storage = [card];
         }
-        localStorage.setItem('cards', JSON.stringify(storage));
+        localStorage.setItem('cards'+card.board, JSON.stringify(storage));
     };
     this.getCardsByBoardId = function (board) {
-        var cardsByBoard = new Array;
-        var storedCards = JSON.parse(localStorage.getItem('cards'));
-        try {
-            for (var i in storedCards) {
-                if (storedCards[i].board === board) {
-                    cardsByBoard.push(storedCards[i]);
-                };
-            };
-        } catch (err) {};
-        return cardsByBoard;
+        var storedCards = JSON.parse(localStorage.getItem('cards'+board));
+        return storedCards;
     };
 };
