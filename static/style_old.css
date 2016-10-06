@@ -1,0 +1,27 @@
+.panel-footer>p>a {
+    color: grey;
+}
+#board-heading .col-md-1, #board-heading .col-md-3{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#board-heading {
+    padding-top: 30px;
+}
+#board-heading .col-md-3 span, #board-heading .col-md-3 h3 {
+    display: inline-block;
+}
+#board-heading .col-md-3 h3 {
+    margin-left: 15px;
+}
+.board:hover {
+    box-shadow: 0 0 5px rgba(75, 255, 184, 1);
+}
+body {
+    /*background: url("../static/cheap_diagonal_fabric_m.png");*/
+    font-family: 'Monda', sans-serif;
+}
+button:focus {
+    outline: none !important;
+}
