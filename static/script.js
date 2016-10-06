@@ -4,7 +4,8 @@ function storageSwitch(storage) {
     };
     this.getBoards = storage.getBoards();
     this.saveCard = function (card) {
-        storage.saveCard(card)};
+        storage.saveCard(card);
+    };
     this.getCardsByBoardId = function (board) {
         storage.getCardsByBoardId(board);
     };
@@ -20,7 +21,7 @@ function Board(title) {
         localStorage.id = Number(localStorage.id) + 1;
     } else {
         localStorage.id = 0;
-    }
+    };
     this.id = localStorage.id;
 };
 
@@ -31,7 +32,7 @@ function Card(text, board) {
         localStorage.id = Number(localStorage.id) + 1;
     } else {
         localStorage.id = 0;
-    }
+    };
     this.id = localStorage.id;
 };
 
@@ -39,7 +40,7 @@ var askNew = function () {
     var title = prompt("Title of the new board: ");
     var newBoard = new Board(title);
     centralStore.saveBoard(newBoard);
-    return newBoard
+    return newBoard;
 };
 var adding = function (board) {
     var newBoard = board;
@@ -51,91 +52,69 @@ var adding = function (board) {
 };
 
 var displayOverview = function () {
-    try {
-        var all = centralStore.getBoards;
-        for (var i = 0; i < all.length; i++) {
-            adding(all[i]);
-        }
-    } catch (err) {
-        console.log("No boards yet.");
-        console.log(err.message);
-    }
+    if (centralStore.getBoards) {
+        for (var i = 0; i < centralStore.getBoards.length; i++) {
+            adding(centralStore.getBoards[i]);
+        };
+    };
 };
 
 
 var displayBoard = function (board) {
     var currentBoard = $(board)[0].id;
-    currentBoard = currentBoard.replace("board_", "")
+    currentBoard = currentBoard.replace("board_", "");
     var allBoards = centralStore.getBoards;
     try {
         for (var i in allBoards) {
             if (currentBoard === allBoards[i].id) {
-                return allBoards[i]
-            }
-        }
-    } catch(err) {
-    }
+                return allBoards[i];
+            };
+        };
+    } catch(err) {};
 };
 
 var addNewCard = function (board) {
-    var currentBoard = $(board)[0].id;
-    currentBoard = currentBoard.replace("board_", "");
-    var cardBoardId = $(board)[0].id;
-    var card = new Card(prompt("Your card:"), cardBoardId );
+    var card = new Card(prompt("Your card:"), board[0].id);
     centralStore.saveCard(card);
-    var cardBoard = "#"+cardBoardId
-    var cc = cardBoard.replace("board", "card");
-    $(".col-md-12").append('<div>' + card.text + '</div>')
-    ;
-
-}
+    $(".col-md-12").append('<div>' + card.text + '</div>');
+};
 
 var displayCards = function (board) {
     var currentBoard = board.id;
     currentBoard = "board_"+currentBoard;
-    var cardsByBoard = new Array;
-    var storedCards = localStorage.getItem('cards');
-    storedCards = JSON.parse(storedCards);
-    for (var i in storedCards) {
-        if (storedCards[i].board === currentBoard) {
-            cardsByBoard.push(storedCards[i]);
-        };
-    };
     var allCards = centralStore.getCardsByBoardId(currentBoard);
     try {
         for (var i in cardsByBoard) {
             var text = cardsByBoard[i].text;
             $(".col-md-12").append('<div>' + text + '</div>');
-        }
-    } catch(err) {
-    }
-    };
+        };
+    } catch(err) {};
+};
 
 
 $(document).ready(function () {
     displayOverview();
     $("#new-board").click(function () {
-        adding(askNew())
+        adding(askNew());
     });
     $(".panel").mouseenter(function () {
         $(this).addClass("active")});
     $(".panel").mouseleave(function() {$(this).removeClass("active");})
     $(".new-card").click(function () {
             addNewCard($(this));
-    })
+    });
     $(".board").click(function () {
-        $(".overview").remove();
-        var currentBoard = $(this)
-        var x = displayBoard(currentBoard);
-        $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-12"><div>'+x.title+'</div></div></div></div>');
-        $("title").remove()
-    $("head").append('<title>'+ x.title+'</title>');
-        $("#new-board").remove();
-        displayCards(x)
-        $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-info center-block new-card" role="button" id="">Add new Card</button>');
-    $(".new-card").click(function () {
-            addNewCard(currentBoard);
-    })
-    })
+            $(".overview").remove();
+            var currentBoard = $(this);
+            var x = displayBoard(currentBoard);
+            $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-12"><div>'+x.title+'</div></div></div></div>');
+            $("title").remove();
+        $("head").append('<title>'+ x.title+'</title>');
+            $("#new-board").remove();
+            displayCards(x);
+            $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-info center-block new-card" role="button" id="">Add new Card</button>');
+        $(".new-card").click(function () {
+                addNewCard(currentBoard);
+        });
+    });
 });
-
