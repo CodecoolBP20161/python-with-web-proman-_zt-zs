@@ -74,10 +74,12 @@ var addNewCard = function (board) {
 var displayCards = function (board) {
     var currentBoard = board.id;
     currentBoard = "board_"+currentBoard;
-    var allCards = centralStore.getCardsByBoardId(currentBoard);
+    currentBoard = "cards"+currentBoard;
+    console.log(currentBoard)
+    var allCards = JSON.parse(localStorage.getItem(currentBoard));
     try {
-        for (var i in cardsByBoard) {
-            var text = cardsByBoard[i].text;
+        for (var i in allCards) {
+            var text = allCards[i].text;
             $(".col-md-6").append('<div class="card">' + text + '</div>');
         }
     } catch(err) {
