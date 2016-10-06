@@ -51,8 +51,12 @@ var askNew = function () {
 var adding = function (board) {
     $("#no-boards").remove();
     var newBoard = board;
-    $(".boards").append('<div class="col-md-3"><div class="panel panel-default board" id="board_' + newBoard.id + '"><div class="panel-heading">' + newBoard.title + '</div><div class="panel-body">Cards should come here</div><div class="panel-footer">Add a card...</div></div></div>');
-
+    $(".boards").append('<a href="#"><div class="col-md-3">' +
+        '<div class="panel panel-default board" id="board_' + newBoard.id + '">' +
+        '<div class="panel-heading">' + newBoard.title + '</div>' +
+        '<div class="panel-body">Cards should come here</div><div class="panel-footer">' +
+        '<button type="button" class="btn navbar-btn btn-info center-block new-card" role="button" id="">Add new Card</button>' +
+        '</div></div></div></a>');
 };
 
 var display = function () {
@@ -79,5 +83,8 @@ $(document).ready(function () {
     $(".board").click(function () {
         $(".board").removeClass("active")
         $(this).addClass("active")
+    });
+        $(".new-card").click(function () {
+        prompt("Your card:");
     })
 });
