@@ -5,7 +5,7 @@ function localStore() {
             storage.push(board);
         } else {
             storage = [board];
-        }
+        };
         localStorage.setItem('boards', JSON.stringify(storage));
     };
     this.getBoards = function () {
@@ -18,11 +18,12 @@ function localStore() {
             storage.push(card);
         } else {
             storage = [card];
-        }
-        localStorage.setItem('cards'+card.board, JSON.stringify(storage));
+        };
+        localStorage.setItem('cards_' + card.board, JSON.stringify(storage));
     };
-    this.getCardsByBoardId = function (board) {
-        var storedCards = JSON.parse(localStorage.getItem('cards'+board));
+    this.getCardsByBoardId = function (boardId) {
+        var board = 'cards_' + boardId;
+        var storedCards = JSON.parse(localStorage.getItem(board));
         return storedCards;
     };
 };
