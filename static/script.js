@@ -75,5 +75,12 @@ $(document).ready(function () {
     display();
     $("#new-board").click(function () {
         adding(askNew())
+    });
+    $(".board").click(function () {
+        $(".board").removeClass("active")
+        $(this).addClass("active")
+    })
+    $(".new-card").click(function () {
+        prompt("card: ");
     })
 });
