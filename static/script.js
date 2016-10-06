@@ -9,7 +9,8 @@ function localStore() {
         localStorage.setItem('boards', JSON.stringify(storage));
     };
     this.getBoards = function () {
-        var storedBoards = localStorage.getItem("boards");
+        var storedBoards = localStorage.getItem('boards');
+        storedBoards = JSON.parse(storedBoards);
         return storedBoards;
     };
     this.saveCard = function () {
