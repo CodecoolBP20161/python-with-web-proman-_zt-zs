@@ -1,28 +1,41 @@
 /**
  * Created by miki on 2016.10.05..
  */
-$(document).ready(function() {
-    var $mkBoardCard = function(title) {
-        $('input#newBoardName').val('');
-        $(".main-content").append("<div class='col-xs-12 col-sm-6 col-md-3' id='" + title + "'></div>");
-        $("#" + title).append("<div class='panel panel-default board' id='board_1'><div class='panel-body'><h4>" + title + "</h4></div></div>")
+$(document).ready(function () {
+    var $mkBoardCard = function (title) {
+        $('input#title').val('');
+        $("#newBoardBtn").remove();
+        $("#table").append("<div class='col-lg-3 col-md-6 board' id='" + title + "'></div>");
+        $("#" + title).append("<span><h3>" + title + "</h3></span>");
+        $("#" + title).after('<div class="col-lg-3 col-md-6" id="newBoardBtn"><span id="dynmcBtn">Create new board...</span></div>');
     };
-    $(".main-content").empty();
-    $("button").mouseup(function(){
-    // $("button").blur();
-})
+    $("#table").empty();
+    $("#table").append('<div class="col-lg-3 col-md-6" id="newBoardBtn"><span id="btn">Create new board...</span></div>');
+    $("#btn").on("click", function() {
+        $('#newBoardModal').modal();
+    });
     $('#newBoardModal').on('shown.bs.modal', function () {
-            $('#newBoardName').focus();
+        $('input#title').focus();
     });
     // $("#board-heading").empty();
-    $(".modal-footer>.btn").click(function() {
-        $mkBoardCard($("#newBoardModal #newBoardName").val());
+    $(".modal-footer .btn").click(function () {
+        $mkBoardCard($("input#title").val());
     });
-    $('input#newBoardName').keypress(function (e) {
+    $('input#title').keypress(function (e) {
         var key = e.which;
-        if(key == 13) {
-            $mkBoardCard($("#newBoardModal #newBoardName").val());
+        if (key == 13) {
+            $mkBoardCard($("input#title").val());
             $('#newBoardModal').modal('hide');
         };
+    });
+    $("#table").on("click", "#dynmcBtn", function() {
+        $('#newBoardModal').modal();
+    });
+    $("#table").on("click", ".board>span", function() {
+        var $containerId = ($(this).parent().attr("id"));
+        $("#table").empty();
+        $("#header span").html($containerId);
+        $("#table").append('<div class="col-lg-3 col-md-6" id="newCardBtn"><span id="btn">Create new card...</span></div>')
+
     });
 });

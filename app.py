@@ -7,7 +7,7 @@ app.config.from_object(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    return render_template("a.html")
 
 
 if __name__ == "__main__":

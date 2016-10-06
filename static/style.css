@@ -38,7 +38,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-span#btn {
+span#btn, span#dynmcBtn {
     background-color: lightgray;
     border: none;
     box-shadow: none;
@@ -49,4 +49,8 @@ span#btn {
     /*color: white;*/
     font-size: 18px;
     font-weight: bold;
+}
+.form-control:focus {
+  border-color: #FF0000;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(214, 13, 13, 0.6);
 }
