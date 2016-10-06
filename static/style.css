@@ -6,3 +6,24 @@
     background-color: transparent;
     box-shadow: 3px 3px 10px 2px gray;
 }
+.navbar {
+    background-image: url("swirl_pattern.png");
+
+}
+
+.col-md-6 {
+    text-align: center;
+    box-shadow: 2px 2px 10px 2px #a8a8a8;
+    border-radius: 5px;
+    height: auto;
+    min-height: 200px;
+}
+
+#board_title {
+    font-size: 30px;
+    text-align: center;
+}
+
+.card {
+    font-size: 20px;
+}
