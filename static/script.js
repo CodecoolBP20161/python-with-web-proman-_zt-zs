@@ -119,7 +119,7 @@ $(document).ready(function () {
         var x = chooseBoard(currentBoard);
         displayBoard(x)
         displayCards(x)
-        $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button>');
+        $(".navbar-right").append('<li><button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button></li>');
     $(".new-card").click(function () {
             addNewCard(currentBoard);
     })
