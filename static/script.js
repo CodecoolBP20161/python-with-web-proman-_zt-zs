@@ -54,7 +54,19 @@ var adding = function (board) {
 
 };
 
+var display = function () {
+    try {
+        var all = centralStore.getBoards;
+        for (var i = 0; i < all.length; i++) {
+            adding(all[i]);
+        }
+    } catch(err) {console.log("No boards yet.");
+    console.log(err.message)}
+};
+
+
 $(document).ready(function () {
+    display();
     $("#new-board").click(function () {
         adding(askNew())
     })
