@@ -13,9 +13,25 @@ function localStore() {
         storedBoards = JSON.parse(storedBoards);
         return storedBoards;
     };
-    this.saveCard = function () {
+    this.saveCard = function (card) {
+        var cardStorage = this.getCardsByBoardId();
+        if (cardStorage) {
+            storage.push(card);
+        } else {
+            cardStorage = [card];
+        }
+        localStorage.setItem('cards', JSON.stringify(cardStorage));
     };
-    this.getCardsByBoardId = function () {
+    this.getCardsByBoardId = function (board) {
+        var cardsByBoard = new Array;
+        var storedCards = localStorage.getItem('cards');
+        storedCards = JSON.parse(storedCards);
+        for (var i in storedCards) {
+            if (storedCards[i].board === board) {
+                cardsByBoard.push(storedCards[i]);
+            };
+        };
+        return cardsByBoard;
     };
 };
 
@@ -40,7 +56,18 @@ function Board(title) {
         localStorage.id = 0;
     }
     this.id = localStorage.id;
-}
+};
+
+function Card(text, board) {
+    this.text = text;
+    this.board = board;
+    if (localStorage.id) {
+        localStorage.id = Number(localStorage.id) + 1;
+    } else {
+        localStorage.id = 0;
+    }
+    this.id = localStorage.id;
+};
 
 var askNew = function () {
     var title = prompt("Title of the new board: ");
@@ -66,14 +93,18 @@ var display = function () {
         var msg = "No boards yet.";
         console.log(msg);
         console.log(err.message);
-        $(".boards").append('<div class="col-md-3" style="text-align: center" id="no-boards"><div class="panel panel-default board"><div class="panel-heading"></div><div class="panel-body">'+msg+'</div><div class="panel-footer"></div></div></div>');
+        $(".boards").append('<div class="col-md-3" style="text-align: center" id="no-boards"><div class="panel panel-default board"><div class="panel-heading"></div><div class="panel-body">' + msg + '</div><div class="panel-footer"></div></div></div>');
     }
 };
 
+var addCard = function (board, card) {
+    var boardId = '#board_' + board.id;
+    $(boardId).append('<div class=""><div class="" id="card_' + card.id + '"">' + card.text + '</div></div>')
+};
 
 $(document).ready(function () {
     display();
     $("#new-board").click(function () {
         adding(askNew())
-    })
+    });
 });
