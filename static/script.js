@@ -106,6 +106,20 @@ var addNewCard = function (board) {
     $(cardBoardId).after('<div class="panel-body" id="card_' + cardBoard + '">'+card.text+'</div>')
 };
 
+var displayBoard = function (board) {
+    var currentBoard = $(board)[0].id;
+    currentBoard = currentBoard.replace("board_", "")
+    var allBoards = centralStore.getBoards;
+    try {
+        for (var i in allBoards) {
+            if (currentBoard === allBoards[i].id) {
+                return allBoards[i]
+            }
+        }
+    } catch(err) {
+    }
+};
+
 $(document).ready(function () {
     display();
     $("#new-board").click(function () {
@@ -117,4 +131,12 @@ $(document).ready(function () {
     $(".new-card").click(function () {
             addNewCard($(this));
     })
+    $(".board").click(function () {
+        $(".overview").remove();
+        $("title").remove()
+        var x = displayBoard($(this));
+        $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-12""><div>'+x.title+'</div></div></div></div>');
+    $("head").append('<title>'+ x.title+'</title>')
+    })
 });
+
