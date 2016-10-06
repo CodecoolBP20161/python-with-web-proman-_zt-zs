@@ -1,20 +1,3 @@
-function storageSwitch(storage) {
-    this.saveBoard = function (board) {
-        storage.saveBoard(board);
-    };
-    this.getBoards = storage.getBoards();
-    this.saveCard = function (card) {
-        storage.saveCard(card);
-    };
-    this.getCardsByBoardId = function (board) {
-        return storage.getCardsByBoardId(board);
-    };
-};
-
-var localImplementation = new localStore();
-var centralStore = new storageSwitch(localImplementation);
-// now it's possible to use centralStore (storageSwitch instance) instead of a localStore instance
-
 function Board(title) {
     this.title = title;
     if (localStorage.id) {
@@ -112,13 +95,14 @@ $(document).ready(function () {
             addNewCard($(this));
     });
     $(".board").click(function () {
-        $(".overview").remove();
-        var currentBoard = $(this);
-        displayBoard(chooseBoard(currentBoard));
-        displayCards(currentBoard);
-        $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button>');
-    $(".new-card").click(function () {
-            addNewCard(currentBoard);
-    })
-    })
+            $(".overview").remove();
+            var currentBoard = $(this);
+            displayBoard(chooseBoard(currentBoard));
+            displayCards(currentBoard);
+            $(".navbar-right").append('<li><button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button></li>');
+
+        $(".new-card").click(function () {
+                addNewCard(currentBoard);
+        });
+    });
 });

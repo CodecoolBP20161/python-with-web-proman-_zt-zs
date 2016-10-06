@@ -16,7 +16,7 @@
     box-shadow: 2px 2px 10px 2px #a8a8a8;
     border-radius: 5px;
     height: auto;
-    min-height: 200px;
+    min-height: 150px;
 }
 
 #board_title {
@@ -25,5 +25,17 @@
 }
 
 .card {
+word-wrap: break-word;
     font-size: 20px;
+    background-color: white;
+    min-height:40px;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px;
+    border:solid 1px white;
+    text-align: justify;
+    vertical-align: middle;
+    padding: 5px;
+    box-shadow: 1px 1px 5px 2px #a8a8a8;
+    border-radius: 5px;
 }
