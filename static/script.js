@@ -41,3 +41,21 @@ function Board(title) {
     }
     this.id = localStorage.id;
 }
+
+var askNew = function () {
+    var title = prompt("Title of the new board: ");
+    var newBoard = new Board(title);
+    centralStore.saveBoard(newBoard);
+    return newBoard
+};
+var adding = function (board) {
+    var newBoard = board;
+    $(".boards").append('<div class="col-md-3"><div class="panel panel-default board" id="board_' + newBoard.id + '"><div class="panel-heading">' + newBoard.title + '</div><div class="panel-body">Cards should come here</div><div class="panel-footer">Add a card...</div></div></div>');
+
+};
+
+$(document).ready(function () {
+    $("#new-board").click(function () {
+        adding(askNew())
+    })
+});
