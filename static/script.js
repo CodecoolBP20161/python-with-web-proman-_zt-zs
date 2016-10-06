@@ -63,7 +63,7 @@ var displayOverview = function () {
 };
 
 
-var displayBoard = function (board) {
+var chooseBoard = function (board) {
     var currentBoard = $(board)[0].id;
     currentBoard = currentBoard.replace("board_", "")
     var allBoards = centralStore.getBoards;
@@ -77,15 +77,24 @@ var displayBoard = function (board) {
     }
 };
 
+
+var displayBoard = function (board) {
+    var x = chooseBoard(board)
+    $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-3"></div><div class="col-md-6 center-block"><div id="board_title" class="center-block">'+x.title+'</div></div><div class="col-md-3"></div></div></div>');
+        $("title").remove()
+    $("head").append('<title>'+ x.title+'</title>');
+        $("#new-board").remove();
+}
+
 var addNewCard = function (board) {
-    var currentBoard = $(board)[0].id;
-    currentBoard = currentBoard.replace("board_", "");
+    var currentBoard = board.id;
+    currentBoard = "board_"+currentBoard;
     var cardBoardId = $(board)[0].id;
     var card = new Card(prompt("Your card:"), cardBoardId );
     centralStore.saveCard(card);
     var cardBoard = "#"+cardBoardId
     var cc = cardBoard.replace("board", "card");
-    $(".col-md-12").append('<div>' + card.text + '</div>')
+    $(".col-md-6").append('<div class="card">' + card.text + '</div>')
     ;
 
 }
@@ -105,7 +114,7 @@ var displayCards = function (board) {
     try {
         for (var i in cardsByBoard) {
             var text = cardsByBoard[i].text;
-            $(".col-md-12").append('<div>' + text + '</div>');
+            $(".col-md-6").append('<div class="card">' + text + '</div>');
         }
     } catch(err) {
     }
@@ -126,13 +135,10 @@ $(document).ready(function () {
     $(".board").click(function () {
         $(".overview").remove();
         var currentBoard = $(this)
-        var x = displayBoard(currentBoard);
-        $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-12"><div>'+x.title+'</div></div></div></div>');
-        $("title").remove()
-    $("head").append('<title>'+ x.title+'</title>');
-        $("#new-board").remove();
+        var x = chooseBoard(currentBoard);
+        displayBoard(x)
         displayCards(x)
-        $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-info center-block new-card" role="button" id="">Add new Card</button>');
+        $(".navbar-right").after('<button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button>');
     $(".new-card").click(function () {
             addNewCard(currentBoard);
     })
