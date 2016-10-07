@@ -19,12 +19,6 @@ function Card(text, board) {
     this.id = localStorage.id;
 };
 
-var askNew = function () {
-    var title = prompt("Title of the new board: ");
-    var newBoard = new Board(title);
-    centralStore.saveBoard(newBoard);
-    return newBoard;
-};
 var adding = function (board) {
     var boardId = "board_" + board.id;
     $(".boards").append('<a href="#"><div class="col-md-3">' +
@@ -41,20 +35,25 @@ var displayOverview = function () {
     };
 };
 
+var askNew = function () {
+    var title = prompt("Title of the new board: ");
+    var newBoard = new Board(title);
+    centralStore.saveBoard(newBoard);
+    return newBoard;
+};
 
 var chooseBoard = function (board) {
+    console.log(board);
     var currentBoard = $(board)[0].id;
     currentBoard = currentBoard.replace("board_", "");
-    var allBoards = centralStore.getBoards;
     try {
-        for (var i in allBoards) {
-            if (currentBoard === allBoards[i].id) {
-                return allBoards[i];
+        for (var i in centralStore.getBoards) {
+            if (currentBoard === centralStore.getBoards[i].id) {
+                return centralStore.getBoards[i];
             };
         };
     } catch(err) {};
 };
-
 
 var displayBoard = function (board) {
     var x = chooseBoard(board)
@@ -73,14 +72,13 @@ var addNewCard = function (board) {
 var displayCards = function (board) {
     var id = board[0].id;
     var cards = centralStore.getCardsByBoardId(id);
-    console.log(cards)
     try {
         for (var i in cards) {
             var text = cards[i].text;
             $(".col-md-6").append('<div class="card">' + text + '</div>');
         };
     } catch(err) {};
-    };
+};
 
 
 $(document).ready(function () {
@@ -88,21 +86,23 @@ $(document).ready(function () {
     $("#new-board").click(function () {
         adding(askNew());
     });
-    $(".panel").mouseenter(function () {
-        $(this).addClass("active")});
-    $(".panel").mouseleave(function() {$(this).removeClass("active");})
+    $('.boards').on('mouseenter', '.panel', function () {
+        $(this).addClass("active");
+    });
+    $(".boards").on('mouseleave', '.panel', function() {
+        $(this).removeClass("active");
+    });
     $(".new-card").click(function () {
             addNewCard($(this));
     });
-    $(".board").click(function () {
+    $(document).on('click', ".board", function () {
             $(".overview").remove();
-            var currentBoard = $(this);
-            displayBoard(chooseBoard(currentBoard));
-            displayCards(currentBoard);
+            var board = ($(this));
+            displayBoard(chooseBoard(board));
+            displayCards(board);
             $(".navbar-right").append('<li><button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button></li>');
-
         $(".new-card").click(function () {
-                addNewCard(currentBoard);
+            addNewCard(board);
         });
     });
 });
