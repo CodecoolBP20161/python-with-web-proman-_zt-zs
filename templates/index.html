@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>_ZT.ZS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='localstore.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='switcher.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='view_control.js') }}"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style_old.css">
-    <link href="https://fonts.googleapis.com/css?family=Abel|Raleway|Ubuntu|Nunito|Montserrat|Oxygen:700|Monda:700"
-          rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -27,90 +26,35 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Boards</a>
+            <a class="navbar-brand" href="/">Boards</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="What are you looking for...">
-                    <button type="submit" class="btn btn-default">Search</button>
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button type="button" class="btn navbar-btn btn-default" id="newBoard" data-toggle="modal"
-                            data-target="#newBoardModal">New Board
-                    </button>
-                    <!-- Modal -->
-                        <div id="newBoardModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Add New Board</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="newBoardName">Title</label>
-                                            <input type="text" class="form-control" id="newBoardName"
-                                                   placeholder="Name your new board...">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    <button type="button" class="btn navbar-btn btn-success" role="button" id="new-board">New Board</button>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="container-fluid" id="board">
-    <div class="row" id="board-heading">
-        <div class="col-md-3">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <h3 id="boardsOverview">Personal Boards</h3>
-        </div>
-        <div class="col-md-9"></div>
-    </div>
-    <div class="container-fluid">
-        <div class="row main-content">
-            <div class="col-md-3">
-                <div class="panel panel-default list" id="list_1">
-                    <div class="panel-heading"><h4>List_1</h4></div>
-                    <div class="panel-body"><p>Cards should come here</p></div>
-                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default list" id="list_2">
-                    <div class="panel-heading"><h4>List_2</h4></div>
-                    <div class="panel-body"><p>Cards should come here</p></div>
-                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default list" id="list_3">
-                    <div class="panel-heading"><h4>List_3</h4></div>
-                    <div class="panel-body"><p>Cards should come here</p></div>
-                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default list" id="list_4">
-                    <div class="panel-heading"><h4>List_4</h4></div>
-                    <div class="panel-body"><p>Cards should come here</p></div>
-                    <div class="panel-footer"><p><a href="#">Add a card...</a></p></div>
-                </div>
-            </div>
-
+<div class="container-fluid overview">
+    <div class="row">
+        <div id="col-md-12 panel-group boards" class="boards">
+                <a id="add-new" onclick="adding(askNew())" href="#">
+                    <div class="col-md-3" style="text-align: center">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Add new board
+                            </div>
+                            <div class="panel-body">Click here</div>
+                        </div>
+                    </div>
+                </a>
         </div>
     </div>
 </div>
