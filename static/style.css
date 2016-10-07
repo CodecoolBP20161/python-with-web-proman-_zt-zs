@@ -1,17 +1,24 @@
-.panel-footer>p>a {
+body {
+    background-image: url("swirl_pattern.png")
+}
+
+.panel-footer > p > a {
     color: grey;
 }
 
 .active {
-    background-color: transparent;
     box-shadow: 3px 3px 10px 2px gray;
 }
-.navbar {
-    background-image: url("swirl_pattern.png");
+
+.navbar {;
 
 }
 
 .col-md-6 {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-weight: bold;
+    font-variant: small-caps;
     text-align: center;
     box-shadow: 2px 2px 10px 2px #a8a8a8;
     border-radius: 5px;
@@ -25,17 +32,19 @@
 }
 
 .card {
-word-wrap: break-word;
+    font-variant: normal;
+    vertical-align: middle;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    word-wrap: break-word;
     font-size: 20px;
-    background-color: white;
-    min-height:40px;
+    min-height: 40px;
     height: auto;
     border-radius: 5px;
     margin: 10px;
-    border:solid 1px white;
     text-align: justify;
     vertical-align: middle;
     padding: 5px;
-    box-shadow: 1px 1px 5px 2px #a8a8a8;
+    box-shadow: 1px 1px 5px 2px #555555;
     border-radius: 5px;
 }
