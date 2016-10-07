@@ -17,7 +17,6 @@ $(document).ready(function () {
     $('#newBoardModal').on('shown.bs.modal', function () {
         $('input#title').focus();
     });
-    // $("#board-heading").empty();
     $(".modal-footer .btn").click(function () {
         $mkBoardCard($("input#title").val());
     });
