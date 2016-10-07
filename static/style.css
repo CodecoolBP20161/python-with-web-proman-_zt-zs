@@ -1,4 +1,26 @@
-.panel-footer>p>a {
+/*div {*/
+    /*margin-top: 15px;*/
+    /*margin-bottom: 15px;*/
+/*}*/
+#table span {
+    min-height: 125px;
+    display: block;
+    /*background-color: #E88774;*/
+    border: dashed black 1px;
+    box-shadow: 5px 5px 5px #D1D1D1;
+    margin: 20px;
+    border-radius: 8px;
+    padding: 0 15px;
+}
+#main {
+    margin-top: 100px;
+}
+#header div {
+    height: 25px;
+    border-bottom: 1px dashed grey;
+    margin: 0 35px;
+}
+#header span {
     color: grey;
 }
 
