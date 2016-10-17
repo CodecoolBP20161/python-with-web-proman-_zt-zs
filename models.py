@@ -13,4 +13,4 @@ class Board(BaseModel):
 
 
 class Card(BaseModel):
-    text = TextField
+    text = TextField()
