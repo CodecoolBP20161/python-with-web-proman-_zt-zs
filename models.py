@@ -1,6 +1,7 @@
 from peewee import *
+from db_connection import *
 
-db = PostgresqlDatabase('miki', user='miki', password='645464')
+db = PostgresqlDatabase(connect_list()[0].strip(), user=connect_list()[1].strip())
 
 
 class BaseModel(Model):
