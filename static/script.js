@@ -1,15 +1,16 @@
 function localStore() {
-    this.boards = new Array;
-    this.cards = new Array;
     this.saveBoard = function (board) {
-        var newBoard = {};
-        var id = board.id;
-        newBoard[id] = board;
-        this.boards.push(newBoard);
-        localStorage.setItem("boards", JSON.stringify(this.boards));
+        var storage = this.getBoards();
+        if (storage) {
+            storage.push(board);
+        } else {
+            storage = [board];
+        }
+        localStorage.setItem('boards', JSON.stringify(storage));
     };
     this.getBoards = function () {
-        var storedBoards = JSON.parse(localStorage.getItem("boards"));
+        var storedBoards = localStorage.getItem('boards');
+        storedBoards = JSON.parse(storedBoards);
         return storedBoards;
     };
     this.saveCard = function () {
@@ -19,7 +20,9 @@ function localStore() {
 };
 
 function storageSwitch(storage) {
-    this.saveBoard = function (board) { storage.saveBoard(board); };
+    this.saveBoard = function (board) {
+        storage.saveBoard(board);
+    };
     this.getBoards = storage.getBoards();
     this.saveCard = storage.saveCard();
     this.getCardsByBoardId = storage.getCardsByBoardId();
@@ -29,9 +32,48 @@ var localImplementation = new localStore();
 var centralStore = new storageSwitch(localImplementation);
 // now it's possible to use centralStore (storageSwitch instance) instead of a localStore instance
 
-var id = 0;
 function Board(title) {
     this.title = title;
-    id += 1;
-    this.id = id;
+    if (localStorage.id) {
+        localStorage.id = Number(localStorage.id) + 1;
+    } else {
+        localStorage.id = 0;
+    }
+    this.id = localStorage.id;
 }
+
+var askNew = function () {
+    var title = prompt("Title of the new board: ");
+    var newBoard = new Board(title);
+    centralStore.saveBoard(newBoard);
+    return newBoard
+};
+var adding = function (board) {
+    $("#no-boards").remove();
+    var newBoard = board;
+    $(".boards").append('<div class="col-md-3"><div class="panel panel-default board" id="board_' + newBoard.id + '"><div class="panel-heading">' + newBoard.title + '</div><div class="panel-body">Cards should come here</div><div class="panel-footer">Add a card...</div></div></div>');
+
+};
+
+var display = function () {
+    try {
+        $("#no-boards").remove();
+        var all = centralStore.getBoards;
+        for (var i = 0; i < all.length; i++) {
+            adding(all[i]);
+        }
+    } catch (err) {
+        var msg = "No boards yet.";
+        console.log(msg);
+        console.log(err.message);
+        $(".boards").append('<div class="col-md-3" style="text-align: center" id="no-boards"><div class="panel panel-default board"><div class="panel-heading"></div><div class="panel-body">'+msg+'</div><div class="panel-footer"></div></div></div>');
+    }
+};
+
+
+$(document).ready(function () {
+    display();
+    $("#new-board").click(function () {
+        adding(askNew())
+    })
+});
