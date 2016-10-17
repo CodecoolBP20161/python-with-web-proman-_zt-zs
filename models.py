@@ -15,3 +15,4 @@ class Board(BaseModel):
 
 class Card(BaseModel):
     text = TextField()
+    board = ForeignKeyField(Board, related_name="board_id")
