@@ -105,4 +105,12 @@ $(document).ready(function () {
             addNewCard(board);
         });
     });
+    $('#add-modal').on('shown.bs.modal', function () {
+        $('#title').focus()
+    })
+    $('#add-modal').on('hide.bs.modal', function () {
+        $("#title").val("");
+    })
 });
+
+
