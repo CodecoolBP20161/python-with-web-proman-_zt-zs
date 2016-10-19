@@ -12,5 +12,6 @@ function storageSwitch(storage) {
 };
 
 var localImplementation = new localStore();
+// var globalImplemntation = new globalStore();
 var centralStore = new storageSwitch(localImplementation);
 // now it's possible to use centralStore (storageSwitch instance) instead of a localStore instance
