@@ -44,7 +44,7 @@ function apiStore() {
 }
 
 var display = function (board) {
-    $(".container-main").after('<div class="container-box col-md-3 col-sm-6"><button type="button" class="btn-board" data-toggle="modal" data-target="#display-modal" data-title="' + board.title + '">' + board.title + '</button></div>')
+    $(".boards-display").after('<div class="container-box col-md-3 col-sm-6"><button type="button" class="btn-board" data-toggle="modal" data-target="#display-modal" data-title="' + board.title + '">' + board.title + '</button></div>')
 }
 
 var globalImplementation = new apiStore();
