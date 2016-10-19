@@ -1,8 +1,24 @@
 from flask import *
-
+from models import *
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+
+
+@app.before_request
+def connect_db():
+    g.db = db
+    g.db.connect()
+    if not Board.table_exists():
+        g.db.create_tables([Board], safe=True)
+    if not Card.table_exists():
+        g.db.create_tables([Card], safe=True)
+
+
+@app.after_request
+def close_db(response):
+    g.db.close()
+    return response
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -10,5 +26,27 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/api/boards", methods=['GET'])
+def get_boards():
+    boards = []
+    all_boards = Board.select()
+    for board in all_boards:
+        json_board = {"title": board.title, "id": str(board.id)}
+        boards.append(json_board)
+    return json.dumps(boards)
+
+
+@app.route("/create_board", methods=['POST'])
+def create_board():
+    Board.create(title=request.form["title"])
+    return redirect("/")
+
+
+# @app.route("/api/cards", methods=['GET'])
+# def get_cards():
+#     test = Card.select()
+#     for card in test:
+#         return "{'board_" + str(card.board.id) + "':'" + card.text + "'}"
+
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    app.run(debug=True)
