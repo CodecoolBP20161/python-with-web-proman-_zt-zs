@@ -1,6 +1,43 @@
-.btn-add{
-    min-height: 75px;
+body {
+    font-family: 'Oxygen', sans-serif;
 }
+
+.top, .bottom{
+    min-height: 175px;
+    position: relative;
+}
+
+.container-main {
+    background-color: white;
+    padding-top: 15px;
+}
+
+.btn-add, .btn-board{
+    width: 100%;
+    background-color: white;
+    border: dashed 3px rgb(200, 15, 25);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    height: 125px;
+    padding: 10px;
+}
+
 .wrapper {
-    margin-top: 200px;
+    background-color: #0fc8be;
+}
+.container-box {
+    margin-bottom: 15px;
+    height: 125px;
+}
+h1 {
+    text-align: center;
+    background-color: white;
+    margin-top: -60px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40%;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    padding: 20px;
 }
