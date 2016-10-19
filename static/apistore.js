@@ -3,9 +3,8 @@ function apiStore() {
         $(document).ready(function () {
             $("#save-btn").click(function () {
                 var title = $(":input[id=title]").val();
+                var board = new Board(title)
                 if (title.length > 0) {
-                    var board = new Board(title)
-
                     $.ajax({
                         method: "POST",
                         url: "/create_board",
@@ -13,7 +12,7 @@ function apiStore() {
                     })
                         .done(function () {
                             confirm("Board successfully saved.")
-                            display(board)
+                            // display(board)
                         })
                 }
                 else {
@@ -37,16 +36,47 @@ function apiStore() {
             })
         });
     };
-    this.saveCard = function (card) {
+    this.saveCard = function () {
+        $(document).ready(function () {
+            $("#card-saver").click(function () {
+                var text = $(":input[id=text]").val();
+                var board = $(this).attr("board-id")
+                $(":input[id=secret-board]").val(board);
+                if (text.length > 0) {
+                    $.ajax({
+                        method: "POST",
+                        url: "/create_card",
+                        data: {"text": text, "board": board}
+                    })
+                        .done(function () {
+                            var ok = confirm("Card successfully saved.");
+                            if (ok == true) {
+                                $("#text").val("");
+                            }
+                        })
+                }
+                else {
+                    alert("The card's text cannot be empty!")
+                }
+            })
+            $("#text").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#card-saver").click()
+                }
+            })
+        })
     };
     this.getCardsByBoardId = function (boardId) {
     };
 }
 
 var display = function (board) {
-    $(".boards-display").after('<div class="container-box col-md-3 col-sm-6"><button type="button" class="btn-board" data-toggle="modal" data-target="#display-modal" data-title="' + board.title + '">' + board.title + '</button></div>')
+    $(".boards-display").after('<div class="container-box col-md-3 col-sm-6"><button type="button" class="btn-board" data-toggle="modal" data-target="#display-modal" data-title="' + board.title + '" data-id="' + board.id + '">' + board.title + '</button></div>')
 }
 
 var globalImplementation = new apiStore();
 globalImplementation.saveBoard()
 globalImplementation.getBoards()
+globalImplementation.saveCard()
+
