@@ -1,8 +1,28 @@
 from flask import *
-
+from models import *
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+
+
+@app.before_request
+def connect_db():
+    g.db = db
+    g.db.connect()
+    if Board.table_exists():
+        pass
+    else:
+        g.db.create_tables([Board], safe=True)
+    if Card.table_exists():
+        pass
+    else:
+        g.db.create_tables([Card], safe=True)
+
+
+@app.after_request
+def close_db(response):
+    g.db.close()
+    return response
 
 
 @app.route("/", methods=['GET', 'POST'])
