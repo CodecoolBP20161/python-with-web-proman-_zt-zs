@@ -1,9 +1,44 @@
 /*div {
     border: solid black 1px;
 }*/
-.btn-add{
-    min-height: 75px;
+.btn-add {
+    height: 75px;
+    width: 125px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color:white;
 }
+
+.btn-board {
+    width: 125px;
+    height: 75px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*.btn-board {*/
+    /*background-color: #5cb85c;*/
+/*}*/
+
+.board-modal-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .wrapper {
     margin-top: 200px;
+}
+
+/*body {*/
+    /*background-image: url("img/swirl_pattern.png");*/
+/*}*/
+
+.active {
+    box-shadow: 3px 3px 10px 2px gray;
+}
+
+.add-active {
+    box-shadow: 3px 3px 10px 2px gray;
+    border: solid 2px lightblue;
 }

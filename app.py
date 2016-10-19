@@ -9,13 +9,9 @@ app.config.from_object(__name__)
 def connect_db():
     g.db = db
     g.db.connect()
-    if Board.table_exists():
-        pass
-    else:
+    if not Board.table_exists():
         g.db.create_tables([Board], safe=True)
-    if Card.table_exists():
-        pass
-    else:
+    if not Card.table_exists():
         g.db.create_tables([Card], safe=True)
 
 
@@ -33,8 +29,8 @@ def index():
 @app.route("/api/boards", methods=['GET'])
 def get_boards():
     boards = []
-    test = Board.select()
-    for board in test:
+    all_boards = Board.select()
+    for board in all_boards:
         json_board = {"title": board.title, "id": str(board.id)}
         boards.append(json_board)
     return json.dumps(boards)

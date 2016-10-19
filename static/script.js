@@ -4,7 +4,8 @@ function Board(title) {
         localStorage.id = Number(localStorage.id) + 1;
     } else {
         localStorage.id = 0;
-    };
+    }
+    ;
     this.id = localStorage.id;
 };
 
@@ -15,7 +16,8 @@ function Card(text, board) {
         localStorage.id = Number(localStorage.id) + 1;
     } else {
         localStorage.id = 0;
-    };
+    }
+    ;
     this.id = localStorage.id;
 };
 
@@ -31,8 +33,10 @@ var displayOverview = function () {
     if (centralStore.getBoards) {
         for (var i = 0; i < centralStore.getBoards.length; i++) {
             adding(centralStore.getBoards[i]);
-        };
-    };
+        }
+        ;
+    }
+    ;
 };
 
 var askNew = function () {
@@ -50,17 +54,21 @@ var chooseBoard = function (board) {
         for (var i in centralStore.getBoards) {
             if (currentBoard === centralStore.getBoards[i].id) {
                 return centralStore.getBoards[i];
-            };
-        };
-    } catch(err) {};
+            }
+            ;
+        }
+        ;
+    } catch (err) {
+    }
+    ;
 };
 
 var displayBoard = function (board) {
     var x = chooseBoard(board)
-    $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-3"></div><div class="col-md-6 center-block"><div id="board_title" class="center-block">'+x.title+'</div></div><div class="col-md-3"></div></div></div>');
-        $("title").remove()
-    $("head").append('<title>'+ x.title+'</title>');
-        $("#new-board").remove();
+    $("body").append('<div class="container-fluid"><div class="row"><div class="col-md-3"></div><div class="col-md-6 center-block"><div id="board_title" class="center-block">' + x.title + '</div></div><div class="col-md-3"></div></div></div>');
+    $("title").remove()
+    $("head").append('<title>' + x.title + '</title>');
+    $("#new-board").remove();
 };
 
 var addNewCard = function (board) {
@@ -76,8 +84,11 @@ var displayCards = function (board) {
         for (var i in cards) {
             var text = cards[i].text;
             $(".col-md-6").append('<div class="card">' + text + '</div>');
-        };
-    } catch(err) {};
+        }
+        ;
+    } catch (err) {
+    }
+    ;
 };
 
 
@@ -89,27 +100,45 @@ $(document).ready(function () {
     $('.boards').on('mouseenter', '.panel', function () {
         $(this).addClass("active");
     });
-    $(".boards").on('mouseleave', '.panel', function() {
+    $(".boards").on('mouseleave', '.panel', function () {
         $(this).removeClass("active");
     });
     $(".new-card").click(function () {
-            addNewCard($(this));
+        addNewCard($(this));
     });
     $(document).on('click', ".board", function () {
-            $(".overview").remove();
-            var board = ($(this));
-            displayBoard(chooseBoard(board));
-            displayCards(board);
-            $(".navbar-right").append('<li><button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button></li>');
+        $(".overview").remove();
+        var board = ($(this));
+        displayBoard(chooseBoard(board));
+        displayCards(board);
+        $(".navbar-right").append('<li><button type="button" class="btn navbar-btn btn-success center-block new-card" role="button" id="">Add new Card</button></li>');
         $(".new-card").click(function () {
             addNewCard(board);
         });
     });
+    $('.container-main').on('mouseenter', '.btn-add', function () {
+        $(this).addClass("add-active");
+    });
+    $(".container-main").on('mouseleave', '.btn-add', function () {
+        $(this).removeClass("add-active");
+    });
     $('#add-modal').on('shown.bs.modal', function () {
         $('#title').focus()
     })
-    $('#add-modal').on('hide.bs.modal', function () {
+    $('#add-modal').on('hidden.bs.modal', function () {
         $("#title").val("");
+    })
+    $('.container-main').on('mouseenter', '.btn-board', function () {
+        $(this).addClass("active");
+    });
+    $(".container-main").on('mouseleave', '.btn-board', function () {
+        $(this).removeClass("active");
+    });
+    $('#display-modal').on('shown.bs.modal', function (event) {
+        $('.board-modal-title').text($(event.relatedTarget).data("title"))
+    })
+    $('#display-modal').on('hidden.bs.modal', function () {
+        $(".board-modal-title").text("");
     })
 });
 
