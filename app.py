@@ -42,6 +42,12 @@ def create_board():
     return redirect("/")
 
 
+@app.route("/create_card", methods=['POST'])
+def create_card():
+    Card.create(text=request.form["text"], board=request.form["board"])
+    return redirect("/")
+
+
 # @app.route("/api/cards", methods=['GET'])
 # def get_cards():
 #     test = Card.select()

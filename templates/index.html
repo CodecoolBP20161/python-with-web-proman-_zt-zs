@@ -46,7 +46,7 @@
                 <form>
                     <div class="form-group">
                         <label for="title">Board title:</label>
-                        <input class="form-control" id="title">
+                        <input class="form-control" id="title" required>
                     </div>
                 </form>
             </div>
@@ -71,9 +71,10 @@
                 <form>
                     <div class="form-group">
                         <label for="text">Card's content</label>
-                        <textarea class="form-control" rows="2" id="text"></textarea>
+                        <input class="form-control" id="secret-board" disabled></input>
+                        <textarea class="form-control" rows="2" id="text" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-default">Add new card</button>
+                    <button type="submit" class="btn btn-default" id="card-saver" board-id="">Add new card</button>
                 </form>
                 <br>
                 <!----- Card list----->

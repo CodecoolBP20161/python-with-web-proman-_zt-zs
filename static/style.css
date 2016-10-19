@@ -6,7 +6,7 @@
     width: 125px;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.9);
-    color:white;
+    color: white;
 }
 
 .btn-board {
@@ -17,9 +17,9 @@
     text-overflow: ellipsis;
 }
 
-/*.btn-board {*/
-    /*background-color: #5cb85c;*/
-/*}*/
+.btn-board {
+    background-color: #5cb85c;
+}
 
 .board-modal-title {
     overflow: hidden;
@@ -30,9 +30,9 @@
     margin-top: 200px;
 }
 
-/*body {*/
-    /*background-image: url("img/swirl_pattern.png");*/
-/*}*/
+body {
+    background-image: url("img/swirl_pattern.png");
+}
 
 .active {
     box-shadow: 3px 3px 10px 2px gray;
@@ -42,3 +42,18 @@
     box-shadow: 3px 3px 10px 2px gray;
     border: solid 2px lightblue;
 }
+
+#secret-board {
+    all: none;
+    color: transparent;
+    background-color: transparent;
+    width: 0px;
+    height: 0px;
+    border: none;
+    float: right;
+}
+
+div.modal-body {
+    background-image: url("img/swirl_pattern.png");
+}
+
