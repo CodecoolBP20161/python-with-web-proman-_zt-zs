@@ -38,7 +38,7 @@ def get_boards():
 
 @app.route("/create_board", methods=['POST'])
 def create_board():
-    board = Board.create(title=request.form["title"])
+    Board.create(title=request.form["title"])
     return redirect("/")
 
 
