@@ -117,4 +117,13 @@ label:focus,
 .add-active {
     box-shadow: 3px 3px 10px 2px gray;
     border: solid 2px lightblue;
-}*/
+}
+
+div.modal-body {
+    background-image: url("img/swirl_pattern.png");
+}
+
+.cards {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

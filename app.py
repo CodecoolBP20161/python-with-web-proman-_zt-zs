@@ -38,21 +38,28 @@ def get_boards():
 
 @app.route("/create_board", methods=['POST'])
 def create_board():
-    Board.create(title=request.form["title"])
+    Board.create(title=request.json["title"])
     return redirect("/")
 
 
 @app.route("/create_card", methods=['POST'])
 def create_card():
-    Card.create(text=request.form["text"], board=request.form["board"])
+    card = request.json
+    Card.create(text=card["text"], board=card["board"])
     return redirect("/")
 
 
-# @app.route("/api/cards", methods=['GET'])
-# def get_cards():
-#     test = Card.select()
-#     for card in test:
-#         return "{'board_" + str(card.board.id) + "':'" + card.text + "'}"
+@app.route("/api/cards/<board>", methods=['GET'])
+def get_cards(board):
+    cards = []
+    c = Card.select().get()
+    current_cards = Card.select().where(Card.board == int(board))
+    for card in current_cards:
+        b = card.board.id
+        json_card = {"text": card.text, "id": str(card.id), "board": b}
+        cards.append(json_card)
+    return json.dumps(cards)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
