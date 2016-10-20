@@ -3,6 +3,12 @@ function Board(title, id) {
     this.id = id;
 };
 
+function Card(text, id, board) {
+    this.text = text;
+    this.board = board;
+    this.id = id;
+};
+
 function apiStore() {
     this.saveBoard = function () {
         var index
@@ -45,33 +51,6 @@ function apiStore() {
             })
         });
     };
-    this.saveCard = function () {
-        $(document).ready(function () {
-                $("#card-saver").click(function () {
-                        var text = $(":input[id=text]").val();
-                        var board = $(this).attr("board-id")
-                        if (text.length > 0) {
-                            $.ajax({
-                                method: "POST",
-                                url: "/create_card",
-                                dataType: "json",
-                                data: JSON.stringify({"text": text, "board": board}),
-                                contentType: 'application/json; charset=utf-8',
-                                success: confirm("Card successfully saved."),
-                            })
-                        }
-                    }
-                )
-                $("#text").keypress(function (e) {
-                    if (e.which == 13) {
-                        e.preventDefault();
-                        $("#card-saver").click()
-                    }
-                })
-            }
-        )
-    }
-    ;
     this.getCardsByBoardId = function (board) {
         $(document).ready(function () {
             var route = '/api/cards/' + String(board)
@@ -83,6 +62,39 @@ function apiStore() {
                 }
             })
         });
+    };
+    this.saveCard = function () {
+        var index
+        $(document).ready(function () {
+                $("#card-saver").click(function () {
+                        var text = $(":input[id=text]").val();
+                        var board = $(this).attr("board-id")
+                        var route = '/api/cards/' + String(board)
+                        $.getJSON(route, function (card) {
+                            index = card.length + 1
+                        })
+                        if (text.length > 0) {
+                            $.ajax({
+                                method: "POST",
+                                url: "/create_card",
+                                dataType: "json",
+                                data: JSON.stringify({"text": text, "board": board}),
+                                contentType: 'application/json; charset=utf-8',
+                                success: confirm("Card successfully saved."),
+                            })
+                            var card = new Card(text, index, board)
+                            displayCards(card)
+                        }
+                    }
+                )
+                $("#text").keypress(function (e) {
+                    if (e.which == 13) {
+                        e.preventDefault();
+                        $("#card-saver").click()
+                    }
+                })
+            }
+        )
     };
 }
 
