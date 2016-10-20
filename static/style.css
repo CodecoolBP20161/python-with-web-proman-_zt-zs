@@ -1,5 +1,6 @@
 body {
     font-family: 'Oxygen', sans-serif;
+    text
 }
 
 .top, .bottom{
@@ -7,12 +8,26 @@ body {
     position: relative;
 }
 
+.wrapper {
+    background-color: #0fc8be;
+}
+
 .container-main {
     background-color: white;
     padding-top: 15px;
 }
 
-.btn-add, .btn-board{
+.btn-add {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow: hidden;
+    height: 125px;
+    padding: 10px;
+    background-color: transparent;
+    border: solid 3px;
+}
+
+.btn-board{
     width: 100%;
     background-color: white;
     border: dashed 3px rgb(200, 15, 25);
@@ -23,9 +38,11 @@ body {
     padding: 10px;
 }
 
-.wrapper {
-    background-color: #0fc8be;
+.btn-board:hover, .btn-add:hover {
+    font-size: larger;
 }
+
+
 .container-box {
     margin-bottom: 15px;
     height: 125px;
@@ -52,9 +69,47 @@ h1 {
     float: right;
 }
 
-div.modal-body {
-    background-image: url("img/swirl_pattern.png");
+.form-control:focus, .form-control:active {
+    outline: dashed 3px rgb(200, 15, 25);
+    border: 1px solid;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
+
+.btn-default:hover {
+    background: white;
+}
+
+.modal-header, .modal-footer {
+    background-color: #0fc8be;
+}
+.modal textarea:hover,
+.modal input:hover,
+.modal textarea:active,
+.modal input:active,
+.modal textarea:focus,
+.modal input:focus,
+.modal button:focus,
+.modal button:active,
+.modal button:hover,
+.modal label:focus,
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    border: 1px solid transparent;
+    outline: dashed 3px rgb(200, 15, 25);
+    -webkit-appearance:none;
+}
+
 /*.active {
     box-shadow: 3px 3px 10px 2px gray;
 }
