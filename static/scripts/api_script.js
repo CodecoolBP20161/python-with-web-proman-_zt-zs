@@ -18,6 +18,7 @@ $(document).ready(function () {
         $(this).removeClass("active");
     });
     $('#display-modal').on('shown.bs.modal', function (event) {
+
         $('#text').focus()
         $('.board-modal-title').text($(event.relatedTarget).data("title"))
         var boardId = $(event.relatedTarget).data("id")
@@ -27,7 +28,9 @@ $(document).ready(function () {
     $('#display-modal').on('hidden.bs.modal', function () {
         $(".board-modal-title").text("");
         $('#card-saver').attr("board-id", "")
-        $(".list-group-item-text").empty()
+        $(".list-group-item").remove()
+        $(".list-group-item-text").remove()
+        $("#text").empty()
     })
 });
 

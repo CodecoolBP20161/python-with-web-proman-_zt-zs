@@ -1,9 +1,17 @@
+function Board(title, id) {
+    this.title = title;
+    this.id = id;
+};
+
 function apiStore() {
     this.saveBoard = function () {
+        var index
         $(document).ready(function () {
+            $.getJSON('/api/boards', function (board) {
+                index = board.length + 1
+            })
             $("#save-btn").click(function () {
                 var title = $(":input[id=title]").val();
-                // var board = new Board(title)
                 if (title.length > 0) {
                     $.ajax({
                         method: "POST",
@@ -13,9 +21,8 @@ function apiStore() {
                         contentType: 'application/json; charset=utf-8',
                         success: confirm("Board successfully saved.")
                     })
-                        .done(function () {
-                            // display(board)
-                        })
+                    var board = new Board(title, index)
+                    display(board)
                 }
                 else {
                     alert("The title cannot be empty!")
@@ -50,7 +57,7 @@ function apiStore() {
                                 dataType: "json",
                                 data: JSON.stringify({"text": text, "board": board}),
                                 contentType: 'application/json; charset=utf-8',
-                                success: confirm("Card successfully saved.")
+                                success: confirm("Card successfully saved."),
                             })
                         }
                     }
@@ -67,13 +74,14 @@ function apiStore() {
     ;
     this.getCardsByBoardId = function (board) {
         $(document).ready(function () {
-            var route = '/api/cards/'+String(board)
+            var route = '/api/cards/' + String(board)
             $.getJSON(route, function (card) {
                 if (card.length > 0) {
-                for (var c = 0; c < card.length; c++) {
-                    displayCards(card[c])
+                    for (var c = 0; c < card.length; c++) {
+                        displayCards(card[c])
+                    }
                 }
-            }})
+            })
         });
     };
 }
@@ -83,8 +91,7 @@ var display = function (board) {
 }
 
 var displayCards = function (card) {
-        $(".list-group-item").after('<p class="list-group-item-text cards">'+card.text+'</p>')
-
+    $(".list-group").after('<a href="#" class="list-group-item"><p class="list-group-item-text cards">' + card.text + '</p></a>')
 }
 
 var globalImplementation = new apiStore();
