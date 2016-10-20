@@ -1,6 +1,5 @@
 body {
     font-family: 'Oxygen', sans-serif;
-    text
 }
 
 .top, .bottom{
@@ -41,6 +40,14 @@ body {
 .btn-board:hover, .btn-add:hover {
     font-size: larger;
 }
+.btn-add:hover {
+    border: dashed 3px rgb(200, 15, 25);
+}
+
+.btn-board:hover {
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(240, 240, 240);
+}
 
 
 .container-box {
@@ -59,55 +66,44 @@ h1 {
     padding: 20px;
 }
 
-#secret-board {
-    all: none;
-    color: transparent;
-    background-color: transparent;
-    width: 0px;
-    height: 0px;
-    border: none;
-    float: right;
+.form-control:focus, textarea:focus, input:focus{
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(159,233,229   ,.6);
+    border-color: #0fc8be;
+    outline: 0;
 }
 
-.form-control:focus, .form-control:active {
-    outline: dashed 3px rgb(200, 15, 25);
-    border: 1px solid;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.btn-default:hover {
-    background: white;
-}
-
-.modal-header, .modal-footer {
+#save-btn, #card-saver {
     background-color: #0fc8be;
 }
-.modal textarea:hover,
-.modal input:hover,
-.modal textarea:active,
-.modal input:active,
-.modal textarea:focus,
-.modal input:focus,
-.modal button:focus,
-.modal button:active,
-.modal button:hover,
-.modal label:focus,
-textarea:hover,
-input:hover,
-textarea:active,
-input:active,
-textarea:focus,
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active {
-    border: 1px solid transparent;
-    outline: dashed 3px rgb(200, 15, 25);
-    -webkit-appearance:none;
+
+#save-btn:hover, #card-saver:hover {
+    background-color: white;
+    border: 3px dashed rgb(200, 15, 25);
+}
+
+.modal-header {
+    border-bottom: dashed 3px rgb(200, 15, 25);
+}
+
+.modal-footer {
+    border-top: dashed 3px rgb(200, 15, 25);
+}
+
+.list-group-item {
+    /*-webkit-appearance: initial;*/
+    border-radius: 8px;
+    border: 1px solid #0fc8be;
+}
+.list-group-item:hover {
+    background-color: #0fc8be !important;
+}
+
+.btn-default:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: #0ca098;
+    border: solid 1px #06504c;
 }
 
 /*.active {
