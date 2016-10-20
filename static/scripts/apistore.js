@@ -3,7 +3,7 @@ function apiStore() {
         $(document).ready(function () {
             $("#save-btn").click(function () {
                 var title = $(":input[id=title]").val();
-                var board = new Board(title)
+                // var board = new Board(title)
                 if (title.length > 0) {
                     $.ajax({
                         method: "POST",
@@ -16,6 +16,9 @@ function apiStore() {
                         .done(function () {
                             // display(board)
                         })
+                }
+                else {
+                    alert("The title cannot be empty!")
                 }
             })
             $("#title").keypress(function (e) {
@@ -62,12 +65,26 @@ function apiStore() {
         )
     }
     ;
-    this.getCardsByBoardId = function (boardId) {
+    this.getCardsByBoardId = function (board) {
+        $(document).ready(function () {
+            var route = '/api/cards/'+String(board)
+            $.getJSON(route, function (card) {
+                if (card.length > 0) {
+                for (var c = 0; c < card.length; c++) {
+                    displayCards(card[c])
+                }
+            }})
+        });
     };
 }
 
 var display = function (board) {
     $(".boards-display").after('<div class="container-box col-md-3 col-sm-6"><button type="button" class="btn-board" data-toggle="modal" data-target="#display-modal" data-title="' + board.title + '" data-id="' + board.id + '">' + board.title + '</button></div>')
+}
+
+var displayCards = function (card) {
+        $(".list-group-item").after('<p class="list-group-item-text cards">'+card.text+'</p>')
+
 }
 
 var globalImplementation = new apiStore();
