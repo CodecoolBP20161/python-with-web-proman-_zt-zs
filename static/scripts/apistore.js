@@ -55,10 +55,14 @@ function apiStore() {
         $(document).ready(function () {
             var route = '/api/cards/' + String(board)
             $.getJSON(route, function (card) {
-                if (card.length > 0) {
-                    for (var c = 0; c < card.length; c++) {
-                        displayCards(card[c])
+                try {
+                    if (card.length > 0) {
+                        for (var c = 0; c < card.length; c++) {
+                            displayCards(card[c])
+                        }
                     }
+                }
+                catch (e) {
                 }
             })
         });
@@ -84,7 +88,9 @@ function apiStore() {
                             })
                             var card = new Card(text, index, board)
                             displayCards(card)
-                            $(":input[id=text]").blur()
+                        }
+                        else {
+                            alert("The text cannot be empty. Please enter something!")
                         }
                     }
                 )
