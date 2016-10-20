@@ -18,7 +18,6 @@ $(document).ready(function () {
         $(this).removeClass("active");
     });
     $('#display-modal').on('shown.bs.modal', function (event) {
-
         $('#text').focus()
         $('.board-modal-title').text($(event.relatedTarget).data("title"))
         var boardId = $(event.relatedTarget).data("id")

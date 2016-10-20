@@ -84,6 +84,7 @@ function apiStore() {
                             })
                             var card = new Card(text, index, board)
                             displayCards(card)
+                            $(":input[id=text]").blur()
                         }
                     }
                 )
@@ -103,6 +104,7 @@ var display = function (board) {
 }
 
 var displayCards = function (card) {
+    $(":input[id=text]").val("")
     $(".list-group").after('<a href="#" class="list-group-item"><p class="list-group-item-text cards">' + card.text + '</p></a>')
 }
 
