@@ -38,15 +38,15 @@ def get_boards():
 
 @app.route("/create_board", methods=['POST'])
 def create_board():
-    Board.create(title=request.form["title"])
+    Board.create(title=request.json["title"])
     return redirect("/")
 
 
-@app.route("/create_card", methods=['POST'])
+@app.route("/create_card", methods=['POST', 'GET'])
 def create_card():
-    Card.create(text=request.form["text"], board=request.form["board"])
+    card = request.json
+    Card.create(text=card["text"], board=card["board"])
     return redirect("/")
-
 
 # @app.route("/api/cards", methods=['GET'])
 # def get_cards():

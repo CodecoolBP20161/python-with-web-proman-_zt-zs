@@ -8,15 +8,14 @@ function apiStore() {
                     $.ajax({
                         method: "POST",
                         url: "/create_board",
-                        data: {title: title}
+                        dataType: "json",
+                        data: JSON.stringify({title: title}),
+                        contentType: 'application/json; charset=utf-8',
+                        success: confirm("Board successfully saved.")
                     })
                         .done(function () {
-                            confirm("Board successfully saved.")
                             // display(board)
                         })
-                }
-                else {
-                    alert("The title cannot be empty!")
                 }
             })
             $("#title").keypress(function (e) {
@@ -38,35 +37,31 @@ function apiStore() {
     };
     this.saveCard = function () {
         $(document).ready(function () {
-            $("#card-saver").click(function () {
-                var text = $(":input[id=text]").val();
-                var board = $(this).attr("board-id")
-                $(":input[id=secret-board]").val(board);
-                if (text.length > 0) {
-                    $.ajax({
-                        method: "POST",
-                        url: "/create_card",
-                        data: {"text": text, "board": board}
-                    })
-                        .done(function () {
-                            var ok = confirm("Card successfully saved.");
-                            if (ok == true) {
-                                $("#text").val("");
-                            }
-                        })
-                }
-                else {
-                    alert("The card's text cannot be empty!")
-                }
-            })
-            $("#text").keypress(function (e) {
-                if (e.which == 13) {
-                    e.preventDefault();
-                    $("#card-saver").click()
-                }
-            })
-        })
-    };
+                $("#card-saver").click(function () {
+                        var text = $(":input[id=text]").val();
+                        var board = $(this).attr("board-id")
+                        if (text.length > 0) {
+                            $.ajax({
+                                method: "POST",
+                                url: "/create_card",
+                                dataType: "json",
+                                data: JSON.stringify({"text": text, "board": board}),
+                                contentType: 'application/json; charset=utf-8',
+                                success: confirm("Card successfully saved.")
+                            })
+                        }
+                    }
+                )
+                $("#text").keypress(function (e) {
+                    if (e.which == 13) {
+                        e.preventDefault();
+                        $("#card-saver").click()
+                    }
+                })
+            }
+        )
+    }
+    ;
     this.getCardsByBoardId = function (boardId) {
     };
 }

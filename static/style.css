@@ -43,16 +43,6 @@ body {
     border: solid 2px lightblue;
 }
 
-#secret-board {
-    all: none;
-    color: transparent;
-    background-color: transparent;
-    width: 0px;
-    height: 0px;
-    border: none;
-    float: right;
-}
-
 div.modal-body {
     background-image: url("img/swirl_pattern.png");
 }
