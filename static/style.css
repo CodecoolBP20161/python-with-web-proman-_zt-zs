@@ -47,3 +47,7 @@ div.modal-body {
     background-image: url("img/swirl_pattern.png");
 }
 
+.cards {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
