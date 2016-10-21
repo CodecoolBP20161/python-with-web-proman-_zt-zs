@@ -2,6 +2,6 @@
 This is the second and third exercise in the Python with Web module, see details in Canvas
 
 ## what to do?
-* to change storage, open switcher.js and set centralStore to localStorage or globalStorage object
-* if you're using global storage and want to use your own database, run build.py
-* run app.py to run the program
+### state pattern doesn't work for now (we didn't plan last week with ajax), so...
+* just run app.py to run the program
+* run build.py to recreate your databases
