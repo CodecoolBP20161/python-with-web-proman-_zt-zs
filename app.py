@@ -52,11 +52,10 @@ def create_card():
 @app.route("/api/cards/<board>", methods=['GET'])
 def get_cards(board):
     cards = []
-    c = Card.select().get()
     current_cards = Card.select().where(Card.board == int(board))
     for card in current_cards:
-        b = card.board.id
-        json_card = {"text": card.text, "id": str(card.id), "board": b}
+        b_id = card.board.id
+        json_card = {"text": card.text, "id": str(card.id), "board": b_id}
         cards.append(json_card)
     return json.dumps(cards)
 
