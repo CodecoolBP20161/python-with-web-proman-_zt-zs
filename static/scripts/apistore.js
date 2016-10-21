@@ -71,7 +71,8 @@ function apiStore() {
     this.saveCard = function () {
         var index
         $(document).ready(function () {
-                $("#card-saver").click(function () {
+                $("#card-saver").click(function (event) {
+                    event.preventDefault();
                         var text = $(":input[id=text]").val();
                         var board = $(this).attr("board-id")
                         var route = '/api/cards/' + String(board)

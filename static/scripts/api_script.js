@@ -22,9 +22,6 @@ $(document).ready(function () {
         $('.board-modal-title').text($(event.relatedTarget).data("title"))
         var boardId = $(event.relatedTarget).data("id")
         $('#card-saver').attr("board-id", boardId)
-        $('#card-saver').click(function () {
-            globalImplementation.getCardsByBoardId(boardId)
-        })
         globalImplementation.getCardsByBoardId(boardId)
 
     })
