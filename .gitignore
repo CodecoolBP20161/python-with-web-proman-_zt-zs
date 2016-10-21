@@ -126,3 +126,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 .idea/
+
+# local connection string
+local_connect_data.txt
