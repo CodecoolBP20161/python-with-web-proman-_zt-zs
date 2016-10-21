@@ -60,7 +60,7 @@ h1 {
     border: 2px dashed #C80F19 !important;
 }
 
-textarea:focus input:focus {
+.form-control:focus {
     outline-color: #0FC8BE !important;
     border-color: #0FC8BE !important;
 }
