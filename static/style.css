@@ -1,50 +1,104 @@
+/*div {
+    border: solid black 1px;
+}*/
+
 body {
-    background-image: url("swirl_pattern.png")
+    background-color: #0FC8BE !important;
+    font-family: 'Oxygen', sans-serif !important;
 }
 
-.panel-footer > p > a {
-    color: grey;
-}
-
-.active {
-    box-shadow: 3px 3px 10px 2px gray;
-}
-
-.navbar {;
+.container-title {
+    margin-top: -105px;
+    margin-right: auto;
+    margin-left: auto;
+    float: none !important;
 
 }
-
-.col-md-6 {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-weight: bold;
-    font-variant: small-caps;
+h1 {
+    margin: 0 auto;
     text-align: center;
-    box-shadow: 2px 2px 10px 2px #a8a8a8;
-    border-radius: 5px;
-    height: auto;
-    min-height: 150px;
+    padding: 8px;
+    background-color: white;
 }
 
-#board_title {
-    font-size: 30px;
-    text-align: center;
+.container-main {
+    background-color: white;
+    padding: 75px 40px;
+}
+#header {
+    display: block;
+    height: 150px;
 }
 
-.card {
-    font-variant: normal;
-    vertical-align: middle;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: black;
-    word-wrap: break-word;
-    font-size: 20px;
-    min-height: 40px;
-    height: auto;
+.container-box {
+    margin-bottom: 15px;
+}
+
+.modal-header {
+    border-bottom: 3px dashed #C80F19;
+}
+
+.modal-footer {
+    border-top: 3px dashed #C80F19;
+}
+
+.list-group-item {
+    border-color: #0FC8BE;
     border-radius: 5px;
-    margin: 10px;
-    text-align: left;
-    vertical-align: middle;
-    padding: 5px;
-    box-shadow: 1px 1px 5px 2px #555555;
-    border-radius: 5px;
+}
+.list-group-item:hover {
+    background-color: #0FC8BE;
+
+}
+#save-btn, #card-saver {
+    background-color: #0FC8BE !important;
+    border-color: transparent !important;
+}
+
+#save-btn:hover, #card-saver:hover {
+    background-color: white !important;
+    border: 2px dashed #C80F19 !important;
+}
+
+.form-control:focus {
+    outline-color: #0FC8BE !important;
+    border-color: #0FC8BE !important;
+}
+
+.btn-add, .btn-board {
+    height: 100px !important;
+    width: 100%;
+}
+
+.btn-add {
+    background-color: rgba(230, 230, 230, 0.9);
+    border: 1px solid #F5F5F5;
+}
+
+.btn-add:hover {
+    background-color: rgba(210, 210, 210, 0.9);
+    font-size: large;
+}
+
+.btn-board:hover {
+    font-size: large;
+    border: 3px dashed #0FC8BE;
+}
+
+.btn-board {
+    background-color: white;
+    border-radius: 8px;
+    border: 3px dashed #C80F19;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cards {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+button:active {
+  background-color: rgba(245, 245, 245, 0.9);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
